@@ -1,10 +1,17 @@
+<?php
+
+$erros = $_SESSION['erros'] ?? [];
+unset($_SESSION['erros']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt_BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Login 01</title>
-    <link rel="stylesheet" href="styles.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= asset('styles/pages/login.css') ?>?v=<?= time() ?>">
 </head>
 <body>
     <header>
@@ -20,7 +27,11 @@
         <section class="login-box">
             <div class="logo-tech"></div>
 
-            <form action="login.php" method="post">
+            <?php foreach ($erros as $erro): ?>
+                <p><?php htmlspecialchars($erro, ENT_QUOTES, 'UTF-8') ?></p>
+            <?php endforeach; ?>
+
+            <form action="" method="post">
                 <div class="field">
                     <input type="email" name="email" id="email" placeholder=" " required>
                     <label for="email">SEU EMAIL</label>
